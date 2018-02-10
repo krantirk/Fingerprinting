@@ -15,8 +15,8 @@ def list(addressList):
 
 			if IPaddress not in addressList: 	# Then If IP never found before
 				addressList.append(IPaddress) # Add to our list
-				print(pkt)
-				print ('[+] Host Found\nMAC: ' + MACaddress + ' | IP: '+ IPaddress + '\n') # Print characteristics
+				print('[+] ' + str(pkt.summary()))
+				print ('\n[+] Host Found\nMAC: ' + MACaddress + ' | IP: '+ IPaddress) # Print characteristics
 
 	return readPacket
 
