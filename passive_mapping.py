@@ -18,24 +18,22 @@ def readPacket(pkt):
                 print ('[+] Host Found\nMAC: ' + MACaddress + ' | IP: '+ IPaddress) # Print characteristics
 
 def list(addressList): 
-    return readPacket(pkt)
+    return readPacket
 
 while True:
         try:
                 print('[+] Listening... \n')
                 sniff(prn=list(addressList)) # Sniff any type of packet, send each of them to readPacket()
-        except KeyboardInterrupt:
-                break
-
-for hostname in addressList:
-        nmproc = NmapProcess(hostname, "-sV")
-        rc = nmproc.run()
-        parsed = NmapParser.parse(nmproc.stdout)
-        host = parsed.hosts[0]
-        services = []
-        cracked = False
-        for serv in host.services:
-                services.append(str(serv.port) + "/" + str(serv.service))
-        
-        print(host)
-        print(services)
+        except:
+                for hostname in addressList:
+                        nmproc = NmapProcess(hostname, "-sV")
+                        rc = nmproc.run()
+                        parsed = NmapParser.parse(nmproc.stdout)
+                        host = parsed.hosts[0]
+                        services = []
+                        cracked = False
+                        for serv in host.services:
+                                services.append(str(serv.port) + "/" + str(serv.service))
+                        
+                        print(host)
+                        print(services)
